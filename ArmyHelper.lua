@@ -15,10 +15,10 @@ update_found = false
 local script_vers = 1.0
 local script_vers_text = "v1.0"
 
-local update_url = 'raw.githubusercontent.com/L1keARZ/Script/main/ArmyHelper.ini' -- Здесь укажите URL для обновления
+local update_url = 'raw.githubusercontent.com/L1keARZ/Script/main/ArmyHelper.ini' -- Р—РґРµСЃСЊ СѓРєР°Р¶РёС‚Рµ URL РґР»СЏ РѕР±РЅРѕРІР»РµРЅРёСЏ
 local update_path = getWorkingDirectory() .. "/ArmyHelper.ini"
 
-local script_url = '' -- Здесь укажите URL для скрипта
+local script_url = '' -- Р—РґРµСЃСЊ СѓРєР°Р¶РёС‚Рµ URL РґР»СЏ СЃРєСЂРёРїС‚Р°
 local script_path = thisScript().path
 
 local tab = 1
@@ -29,21 +29,21 @@ imgui.OnFrame(function()
     return WinState[0]
 end, function(player)
     imgui.SetNextWindowPos(imgui.ImVec2(500, 700), imgui.Cond.FirstUseEver, imgui.ImVec2(0.5, 0.5))
-    imgui.Begin(u8"Помощник для руководства организаций", WinState)
+    imgui.Begin(u8"РџРѕРјРѕС‰РЅРёРє РґР»СЏ СЂСѓРєРѕРІРѕРґСЃС‚РІР° РѕСЂРіР°РЅРёР·Р°С†РёР№", WinState)
 
-    if imgui.Button(faicons("user")..u8" Информация",imgui.ImVec2(160, 60)) then
+    if imgui.Button(faicons("user")..u8" РРЅС„РѕСЂРјР°С†РёСЏ",imgui.ImVec2(160, 60)) then
         tab = 1
     end
 
-    if imgui.Button(faicons("keyboard")..u8" Биндер",imgui.ImVec2(160, 60)) then
+    if imgui.Button(faicons("keyboard")..u8" Р‘РёРЅРґРµСЂ",imgui.ImVec2(160, 60)) then
         tab = 2
     end
 
-    if imgui.Button(faicons("sliders")..u8" Настройки",imgui.ImVec2(160, 60)) then
+    if imgui.Button(faicons("sliders")..u8" РќР°СЃС‚СЂРѕР№РєРё",imgui.ImVec2(160, 60)) then
         tab = 3
     end
     
-    if imgui.Button(faicons("envelope")..u8" О скрипте",imgui.ImVec2(160, 60)) then
+    if imgui.Button(faicons("envelope")..u8" Рћ СЃРєСЂРёРїС‚Рµ",imgui.ImVec2(160, 60)) then
         tab = 4
     end
 
@@ -67,7 +67,7 @@ function check_update()
         if status == dlstatus.STATUS_ENDDOWNLOADDATA then
             updateIni = inicfg.load(nil, update_path)
             if tonumber(updateIni.info.vers) > script_vers then
-                sampAddChatMessage("{FFFFFF}Имеется {32CD32}новая {FFFFFF}версия скрипта. Версия: {32CD32}"..updateIni.info.vers_text..". {FFFFFF}/update что-бы обновить", 0xFF0000)
+                sampAddChatMessage("{FFFFFF}РРјРµРµС‚СЃСЏ {32CD32}РЅРѕРІР°СЏ {FFFFFF}РІРµСЂСЃРёСЏ СЃРєСЂРёРїС‚Р°. Р’РµСЂСЃРёСЏ: {32CD32}"..updateIni.info.vers_text..". {FFFFFF}/update С‡С‚Рѕ-Р±С‹ РѕР±РЅРѕРІРёС‚СЊ", 0xFF0000)
                 update_found = true
             end
             os.remove(update_path)
@@ -86,7 +86,7 @@ function main()
             update_state = true
         end)
     else
-        sampAddChatMessage('{FFFFFF}Нет доступных обновлений!')
+        sampAddChatMessage('{FFFFFF}РќРµС‚ РґРѕСЃС‚СѓРїРЅС‹С… РѕР±РЅРѕРІР»РµРЅРёР№!')
     end
 
     while true do
@@ -95,7 +95,7 @@ function main()
         if update_state then
             downloadUrlToFile(script_url, script_path, function(id, status)
                 if status == dlstatus.STATUS_ENDDOWNLOADDATA then
-                    sampAddChatMessage("{FFFFFF}Скрипт {32CD32}успешно {FFFFFF}обновлён.", 0xFF0000)
+                    sampAddChatMessage("{FFFFFF}РЎРєСЂРёРїС‚ {32CD32}СѓСЃРїРµС€РЅРѕ {FFFFFF}РѕР±РЅРѕРІР»С‘РЅ.", 0xFF0000)
                 end
             end)
             break
